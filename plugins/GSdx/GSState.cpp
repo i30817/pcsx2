@@ -3800,7 +3800,7 @@ bool GSC_HauntingGround(const GSFrameInfo& fi, int& skip)
 	{
 		if(fi.TME && fi.FPSM == fi.TPSM && fi.TPSM == PSM_PSMCT16S && fi.FBMSK == 0x03FFF)
 		{
-			skip = 1;
+			skip = 1; // Didn't find any diff with this off - bositman
 		}
 		else if(fi.TME && fi.FBP == 0x3000 && fi.TBP0 == 0x3380)
 		{
@@ -3808,17 +3808,17 @@ bool GSC_HauntingGround(const GSFrameInfo& fi, int& skip)
 		}
 		else if(fi.TME && (fi.FBP ==0x2200) && (fi.TBP0 ==0x3a80) && fi.FPSM == fi.TPSM && fi.TPSM == PSM_PSMCT32)
 		{
-			skip = 1;
+			skip = 1; // Didn't find any diff with this off - bositman
 		}
 		else if(fi.FBP ==0x2200 && fi.TBP0==0x3000 && fi.TPSM == PSM_PSMT8H && fi.FBMSK == 0)
 		{
-			skip = 1;
+			skip = 1; // Distance fog
 		}
 		else if(fi.TME)
 		{
-			// depth textures (bully, mgs3s1 intro, Front Mission 5)
+			// Didn't find any diff with this off - bositman - depth textures (bully, mgs3s1 intro, Front Mission 5)
 			if( (fi.TPSM == PSM_PSMZ32 || fi.TPSM == PSM_PSMZ24 || fi.TPSM == PSM_PSMZ16 || fi.TPSM == PSM_PSMZ16S) ||
-				// General, often problematic post processing
+				// Shadows -  General, often problematic post processing
 				(GSUtil::HasSharedBits(fi.FBP, fi.FPSM, fi.TBP0, fi.TPSM)) )
 			{
 				skip = 1;
