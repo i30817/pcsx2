@@ -288,6 +288,9 @@ void populate_hw_table(GtkWidget* hw_table)
 	GtkWidget* af_label     = gtk_label_new("Anisotropic Filtering:");
 	GtkWidget* af_combo_box = CreateComboBoxFromVector(theApp.m_gs_max_anisotropy, "MaxAnisotropy", 1);
 
+	GtkWidget* crc_label     = gtk_label_new("Automatic CRC level:");
+	GtkWidget* crc_combo_box = CreateComboBoxFromVector(theApp.m_gs_crc_level, "crc_hack_level", 3);
+
 	GtkWidget* paltex_check     = CreateCheckBox("Allow 8 bits textures", "paltex");
 	GtkWidget* acc_blend_check  = CreateCheckBox("Accurate Blend", "accurate_blend", true);
 	GtkWidget* acc_date_check   = CreateCheckBox("Accurate Date", "accurate_date", false);
@@ -303,11 +306,12 @@ void populate_hw_table(GtkWidget* hw_table)
 	gtk_widget_set_tooltip_text(MT_nvidia_check, "Huge speedup on Nvidia binary driver! No effect otherwise.");
 
 	s_table_line = 0;
-	InsertWidgetInTable(hw_table, filter_label, filter_combo_box);
-	InsertWidgetInTable(hw_table, af_label, af_combo_box);
 	InsertWidgetInTable(hw_table, paltex_check, MT_nvidia_check);
 	InsertWidgetInTable(hw_table, acc_blend_check, acc_date_check);
 	InsertWidgetInTable(hw_table, acc_cclip_check);
+	InsertWidgetInTable(hw_table, filter_label, filter_combo_box);
+	InsertWidgetInTable(hw_table, af_label, af_combo_box);
+	InsertWidgetInTable(hw_table, crc_label, crc_combo_box);
 }
 
 void populate_gl_table(GtkWidget* gl_table)
@@ -399,7 +403,6 @@ void populate_hack_table(GtkWidget* hack_table)
 	GtkWidget* hack_tco_entry      = CreateTextBox("UserHacks_TCOffset");
 	GtkWidget* hack_logz_check     = CreateCheckBox("Log Depth Hack", "logz", true);
 	GtkWidget* align_sprite_check  = CreateCheckBox("Align sprite hack", "UserHacks_align_sprite_X");
-	GtkWidget* auto_skip_check     = CreateCheckBox("Auto Skip depth Texture", "UserHacks_AutoSkipDrawDepth");
 
 	GtkWidget* hack_sprite_box     = CreateComboBoxFromVector(theApp.m_gs_hack, "UserHacks_SpriteHack");
 	GtkWidget* hack_sprite_label   = gtk_label_new("Alpha-Sprite Hack:");
@@ -429,7 +432,6 @@ void populate_hack_table(GtkWidget* hack_table)
 	InsertWidgetInTable(hack_table , hack_alpha_check    , hack_offset_check);
 	InsertWidgetInTable(hack_table , hack_logz_check     , hack_date_check);
 	InsertWidgetInTable(hack_table , hack_wild_check     , align_sprite_check);
-	InsertWidgetInTable(hack_table , auto_skip_check);
 	InsertWidgetInTable(hack_table , hack_sprite_label   , hack_sprite_box );
 	InsertWidgetInTable(hack_table , stretch_hack_label  , stretch_hack_box );
 	InsertWidgetInTable(hack_table , hack_skipdraw_label , hack_skipdraw_spin);
